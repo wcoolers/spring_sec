@@ -1,0 +1,8 @@
+use a4_akanbiad;
+
+drop table enrollment;
+drop table user_role;
+drop table role;
+drop table course;
+drop table student;
+drop table user;
