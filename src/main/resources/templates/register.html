@@ -1,0 +1,44 @@
+<!--  
+ * This is the register page. Accessible the public
+ * 
+ * @author Adegoke Akanbi. Student ID: 991719830
+ * @version 1.0
+ */
+-->
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Register</title>
+		<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+		<link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" media="all" rel="stylesheet">
+	
+	</head>
+	<body>
+		<header>
+			<img id="system-logo" height="95px"
+				src="../../static/images/Saraswati_Gyan_Mandir_School_Logo.jpg"
+				th:src="@{/images/Saraswati_Gyan_Mandir_School_Logo.jpg}" 
+			/>
+			<span id="title">Zu'Ma High School</span>
+			
+		</header>
+		<h1>Register Here!</h1>
+		<p><a href="#" th:href="@{/login}">Log in instead!</a> </p>
+		<div class="error"></div>
+		
+		<form name="form" method="post" th:action="@{/register}" onsubmit="return verify()">
+			
+			<label for="username"> Email: </label>
+			<input type="email" name="username" />
+			<label for="password"> Password: </label>
+			<input type="password" name="password" />
+			<label for="verify-password"> Verify Password: </label>
+			<input type="password" name="verify-password" /> <br>
+			<input type="submit" value="Register"/>
+		</form>
+		<footer>
+				Copyright &copy; Adegoke Akanbi
+		</footer>
+	</body>
+</html>

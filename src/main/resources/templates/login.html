@@ -1,0 +1,46 @@
+<!--  
+ * This is the login page. Accessible the public
+ * 
+ * @author Adegoke Akanbi. Student ID: 991719830
+ * @version 1.0
+ */
+-->
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Login</title>
+		<link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" media="all" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<img id="system-logo" height="95px"
+				src="../../static/images/Saraswati_Gyan_Mandir_School_Logo.jpg"
+				th:src="@{/images/Saraswati_Gyan_Mandir_School_Logo.jpg}" 
+			/>
+			<span id="title">Zu'Ma High School</span>
+			<a th:href="@{/register}">Register</a>
+		</header>
+				
+		<div class="text">
+			<h1>Login Page</h1>
+			<p><a href="#" th:href="@{/}">Back to home page!</a> </p>
+		</div>
+		<form method="post" th:action="@{/login}">
+			<div th:if="${param.error}">
+				<div class="error">Invalid Credentials</div>
+			</div>
+			<div th:if="${param.logout}">
+				<div class="success">You have been logged out</div>
+			</div>
+			<label for="username"> Email: </label>
+			<input type="email" name="username" />
+			<label for="password"> Password: </label>
+			<input type="password" name="password" />
+			<input type="submit" value="Log In" name="login-submit" id="login"/>
+		</form>
+		<footer>
+				Copyright &copy; Adegoke Akanbi
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!--  
+ * This is the landing index page. Accessible the public
+ * 
+ * @author Adegoke Akanbi. Student ID: 991719830
+ * @version 1.0
+ */
+-->
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Home</title>
+		<link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" media="all" rel="stylesheet">
+		<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	</head>
+	<body>
+		<header>
+			<img id="system-logo" height="95px"
+				src="../../static/images/Saraswati_Gyan_Mandir_School_Logo.jpg"
+				th:src="@{/images/Saraswati_Gyan_Mandir_School_Logo.jpg}" 
+			/>
+			<span id="title">Zu'Ma High School</span>
+			<a th:href="@{/register}">Register</a>
+			<a th:href="@{/login}">Login</a>
+		</header>
+		<h1>Hello, Explorer!</h1>
+		<p>Welcome to Zuma's Shop. Please feel free to look around.</p>
+		<p>You can <a th:href="@{/register}">register</a> or <a th:href="@{/login}">login</a>, or you can just chill and enjoy this page. Lol<br> Thank you.</p>
+		<footer>
+				Copyright &copy; Adegoke Akanbi
+		</footer>
+	</body>
+</html>

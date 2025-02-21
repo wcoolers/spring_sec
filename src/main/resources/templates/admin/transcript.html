@@ -1,0 +1,64 @@
+<!--  
+ * This is the Product List page. Accessible only to admins
+ * 
+ * @author Adegoke Akanbi. Student ID: 991719830
+ * @version 1.0
+ */
+-->
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Transcript</title>
+		<link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" media="all" rel="stylesheet">
+		<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	</head>
+	<body>
+		<header>
+			<img id="system-logo" height="95px"
+				src="../../static/images/Saraswati_Gyan_Mandir_School_Logo.jpg"
+				th:src="@{/images/Saraswati_Gyan_Mandir_School_Logo.jpg}" 
+			/>
+			<span id="title">Zu'Ma High School</span>
+			<a th:href="@{/secure}">Home</a>
+			<a th:href="@{/secure/courseRegistration}">Enroll</a>
+			<a th:if="${roleList.contains('ROLE_ADMIN') or roleList.contains('ROLE_TEACHER')}" th:href="@{/admin/grading}">Grading</a>
+			<a th:if="${roleList.contains('ROLE_ADMIN') or roleList.contains('ROLE_TEACHER')}" th:href="@{/admin/transcript}">Transcript</a>
+			<form method="post" th:action="@{/logout}" >
+				<input type="submit" value="Logout" />
+			</form>
+			
+		</header>
+		
+		<h3>Enter Student ID</h3>
+		<form method="post" th:action="@{/admin/transcript}" >
+				Student ID: 
+				<input type="number" name="studentId" required>
+				<input type="submit" value="Get Transcript" />
+		</form>
+		
+		<br>
+		<hr>
+		<div th:if="${transcriptList != null and !transcriptList.empty}">
+			<h3>Transcript</h3>
+			<p>Date: [[${date}]]</p>
+			<p>Student Name: [[${student.LastName}]], [[${student.firstName}]]</p>
+			<p>Student ID: [[${student.studentId}]]</p>
+			<table>
+				<tr>
+					<th>Course</th>
+					<th>Grade</th>
+					<th>Term</th>
+				</tr>
+				<tr th:each="record : ${transcriptList}">
+					<td th:text="${record.courseName}"></td>
+					<td th:text="${record.grade}"></td>
+					<td th:text="${record.termName}"></td>
+				</tr>
+				
+			</table>
+			<br>
+			<hr>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,70 @@
+<!--  
+ * This is the Customer List page. Accessible only to admins
+ * 
+ * @author Adegoke Akanbi. Student ID: 991719830
+ * @version 1.0
+ */
+-->
+
+<html xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Grading</title>
+		<link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" media="all" rel="stylesheet">
+		<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+	</head>
+	<body>
+		<header>
+			<img id="system-logo" height="95px"
+				src="../../static/images/Saraswati_Gyan_Mandir_School_Logo.jpg"
+				th:src="@{/images/Saraswati_Gyan_Mandir_School_Logo.jpg}" 
+			/>
+			<span id="title">Zu'Ma High School</span>
+			<a th:href="@{/secure}">Home</a>
+			<a th:href="@{/secure/courseRegistration}">Enroll</a>
+			<a th:if="${roleList.contains('ROLE_ADMIN') or roleList.contains('ROLE_TEACHER')}" th:href="@{/admin/grading}">Grading</a>
+			<a th:if="${roleList.contains('ROLE_ADMIN') or roleList.contains('ROLE_TEACHER')}" th:href="@{/admin/transcript}">Transcript</a>
+			<form method="post" th:action="@{/logout}" >
+				<input type="submit" value="Logout" />
+			</form>
+			
+		</header>
+		
+		<h3>Welcome</h3>
+		<p>Please enter student ID  to search for a student</p>
+		
+		<form method="post" th:action="@{/admin/getEnrollment}" th:object="${enrollment}" >
+				Student ID: 
+				<input type="number" th:field="*{studentId}" required>
+				Course ID: 
+				<input type="number" th:field="*{courseId}" required>
+				<input type="hidden" th:field="*{termName}" >
+				<input type="hidden" th:field="*{grade}" >
+				<input type="hidden" th:field="*{enrollDate}">
+				<input type="submit" value="Search" />
+		</form>
+		
+		<br>
+		
+		<div th:if="${enrollmentToBeUpdated != null}">
+			<form action="#" method="post" th:action="@{/admin/updateGrade}" th:object="${enrollmentToBeUpdated}">
+				Student ID: 
+				<input type="number" th:field="*{studentId}" class="fade" readonly>
+				Course ID: 
+				<input type="number" th:field="*{courseId}" class="fade" readonly>
+				Term: 
+				<input type="text" th:field="*{termName}" class="fade" readonly>
+				Grade: 
+				<input type="text" th:field="*{grade}">
+				Enrolled Date: 
+				<input type="text" th:field="*{enrollDate}" class="fade" readonly>
+				<input type="submit" value="Update Grade" />
+			</form> 
+		</div>
+		
+		
+		<footer>
+				Copyright &copy; Adegoke Akanbi
+		</footer>
+	</body>
+</html>
